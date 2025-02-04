@@ -25,6 +25,7 @@ jobs:
 
       - name: Set environment variables
         run: |
+          echo "APP_KEY=${{ secrets.APP_KEY }}" >> .env
           echo "APP_URL=https://main.d2fjryx00g2zv.amplifyapp.com" >> .env
 
       - name: Compile assets
@@ -38,7 +39,7 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'eu-central-1'  # Adjust to your region
+          AWS_REGION: 'eu-central-1'
           S3_BUCKET_NAME: 'statamic-ssg'
         run: |
           aws s3 sync ./storage/app/static s3://$S3_BUCKET_NAME --delete --exact-timestamps
