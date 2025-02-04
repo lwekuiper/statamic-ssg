@@ -23,6 +23,10 @@ jobs:
           composer install
           npm install
 
+      - name: Set environment variables
+        run: |
+          echo "APP_URL=https://main.d2fjryx00g2zv.amplifyapp.com" >> .env
+
       - name: Compile assets
         run: |
           npm run build
