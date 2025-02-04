@@ -33,7 +33,7 @@ jobs:
           AWS_REGION: 'eu-central-1'  # Adjust to your region
           S3_BUCKET_NAME: 'statamic-ssg'
         run: |
-          aws s3 sync ./public s3://$S3_BUCKET_NAME --delete --exact-timestamps
+          aws s3 sync ./storage/app/static s3://$S3_BUCKET_NAME --delete --exact-timestamps
 
       - name: Invalidate CloudFront Cache
         env:
