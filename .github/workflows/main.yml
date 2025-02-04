@@ -44,5 +44,8 @@ jobs:
       - name: Deploy to S3
         run: aws s3 sync ./storage/app/static s3://$S3_BUCKET_NAME --delete --exact-timestamps
 
+      - name: Trigger Amplify deploy
+        run: aws amplify start-job --app-id $AMPLIFY_APP_ID --branch-name main --job-type release
+
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
